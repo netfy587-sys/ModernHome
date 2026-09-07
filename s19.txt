@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What the Ancients Ate — A Guide to Ancient Food</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500;600&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2A2419;
+    --paper:#EEE6D3;
+    --paper-deep:#E0D3B4;
+    --olive:#5F6B3E;
+    --olive-deep:#333A20;
+    --terracotta:#B2542E;
+    --wheat:#C79A3C;
+    --line:#D3C29A;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Archivo', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+  }
+  h1,h2,h3,.display{
+    font-family:'Cormorant', serif;
+    color:var(--olive-deep);
+    font-weight:500;
+    line-height:1.16;
+    margin:0;
+  }
+  a{color:inherit;}
+  img{display:block;width:100%;height:100%;object-fit:cover;}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  .prose{max-width:640px;}
+
+  nav{
+    position:sticky;top:0;z-index:20;
+    background:rgba(238,230,211,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .brand{font-family:'Cormorant',serif;font-size:21px;color:var(--olive-deep);letter-spacing:0.2px;}
+  .navlinks{display:flex;gap:26px;font-size:14px;}
+  .navlinks a{text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px;}
+  .navlinks a:hover{border-bottom-color:var(--terracotta);}
+  @media (max-width:780px){.navlinks{display:none;}}
+
+  .hero{position:relative;height:86vh;min-height:560px;overflow:hidden;}
+  .hero img{filter:saturate(0.95) brightness(0.66) sepia(0.08);}
+  .hero-overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(51,58,32,0.16) 0%, rgba(51,58,32,0.55) 78%, rgba(51,58,32,0.82) 100%);
+    display:flex;align-items:flex-end;
+  }
+  .hero-content{padding:0 32px 64px;max-width:1180px;margin:0 auto;width:100%;}
+  .hero h1{color:#EEE6D3;font-size:clamp(34px,5.2vw,62px);max-width:16ch;}
+  .hero p{color:#DDCFA9;max-width:48ch;margin-top:18px;font-size:18px;}
+
+  section{padding:96px 0;}
+  section.tight{padding:72px 0;}
+  .kicker{font-size:14px;color:var(--terracotta);margin-bottom:14px;}
+  h2{font-size:clamp(28px,3.3vw,40px);margin-bottom:22px;}
+  h2.wide{max-width:20ch;}
+  p{margin:0 0 16px;}
+  .lede{font-size:19px;color:#48412E;}
+
+  hr.rule{border:none;border-top:1px solid var(--line);margin:0;}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+  .split .figure{aspect-ratio:4/5;overflow:hidden;background:var(--paper-deep);}
+  .split.reverse .figure{order:2;}
+  @media (max-width:860px){
+    .split{grid-template-columns:1fr;gap:32px;}
+    .split .figure{order:0 !important;aspect-ratio:16/10;}
+  }
+
+  .band{position:relative;height:56vh;min-height:380px;}
+  .band img{filter:saturate(0.95) sepia(0.05);}
+
+  /* STAPLE GRID */
+  .staple-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:12px;}
+  .staple-cell{background:var(--paper);padding:32px 26px;}
+  .staple-cell .num{font-family:'Cormorant',serif;font-size:14px;color:var(--wheat);margin-bottom:10px;}
+  .staple-cell h3{font-size:19px;margin-bottom:8px;}
+  .staple-cell p{font-size:14.5px;color:#48412E;margin:0;}
+  @media (max-width:760px){.staple-grid{grid-template-columns:1fr;}}
+
+  /* CIVILIZATION LIST */
+  .civ-row{display:grid;grid-template-columns:200px 1fr;gap:36px;padding:26px 0;border-top:1px solid var(--line);}
+  .civ-row:last-child{border-bottom:1px solid var(--line);}
+  .civ-row h3{font-size:18px;margin-bottom:6px;color:var(--olive-deep);}
+  .civ-row .tag{font-size:12.5px;color:var(--terracotta);letter-spacing:0.2px;}
+  .civ-row p{font-size:15px;color:#48412E;margin:0;}
+  @media (max-width:640px){.civ-row{grid-template-columns:1fr;gap:6px;}}
+
+  /* PRESERVATION LIST */
+  .pres-block{display:grid;grid-template-columns:0.9fr 1.1fr;gap:64px;align-items:start;}
+  @media (max-width:860px){.pres-block{grid-template-columns:1fr;}}
+  .pres-list .item{padding:18px 0;border-top:1px solid var(--line);}
+  .pres-list .item:last-child{border-bottom:1px solid var(--line);}
+  .pres-list h4{font-family:'Cormorant',serif;font-weight:500;font-size:18px;margin:0 0 6px;}
+  .pres-list p{font-size:14.5px;color:#48412E;margin:0;}
+
+  .myth{padding:26px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1.6fr;gap:24px;}
+  .myth:last-child{border-bottom:1px solid var(--line);}
+  .myth .claim{font-family:'Cormorant',serif;font-size:18px;color:var(--terracotta);}
+  .myth .fact{font-size:15px;color:#48412E;}
+  @media (max-width:700px){.myth{grid-template-columns:1fr;gap:8px;}}
+
+  footer{background:var(--olive-deep);color:#DED2AC;padding:64px 0 40px;margin-top:40px;}
+  footer .wrap{display:flex;flex-direction:column;gap:8px;}
+  footer h2{color:#EEE6D3;font-size:26px;max-width:23ch;}
+  footer p{color:#B4A97D;max-width:60ch;font-size:14px;}
+  footer .fine{margin-top:36px;font-size:12px;color:#7C7350;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">What the Ancients Ate</div>
+    <div class="navlinks">
+      <a href="#why">The evidence</a>
+      <a href="#staples">Staples</a>
+      <a href="#civilizations">Civilizations</a>
+      <a href="#preserving">Preserving food</a>
+      <a href="#myths">Myths</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?q=80&w=1800&auto=format&fit=crop" alt="A rustic clay pot with ancient style grains and legumes">
+  <div class="hero-overlay">
+    <div class="hero-content">
+      <h1>What people actually ate in the ancient world</h1>
+      <p>Long before restaurants or refrigeration, meals were built around one or two staple grains, whatever grew locally, and techniques for making food last through the seasons.</p>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section id="why" class="tight">
+    <div class="wrap">
+      <div class="prose">
+        <div class="kicker">How we know</div>
+        <h2 class="wide">Reconstructing a diet from what's left behind</h2>
+        <p class="lede">Almost no ancient meal survives intact. What historians and archaeologists work from instead is indirect: charred grain found in storage pits, food residue on pottery, animal bones at settlement sites, tomb paintings, and written records — from Egyptian temple offering lists to Roman cookbooks like Apicius's De Re Coquinaria.</p>
+        <p>From that patchwork, a consistent picture emerges: ancient diets were overwhelmingly plant-based and grain-centered, with meat, spice, and imported goods reserved for the wealthy or for specific feast days rather than daily eating.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="rule"></div>
+
+  <section class="tight">
+    <div class="wrap">
+      <div class="split">
+        <div class="figure">
+          <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1400&auto=format&fit=crop" alt="Ancient style bread and grain on a wooden table">
+        </div>
+        <div>
+          <div class="kicker">The center of nearly every plate</div>
+          <h2>Bread, porridge, and grain</h2>
+          <p>Grain was the caloric backbone of almost every ancient civilization — wheat and barley across the Mediterranean and Near East, millet and rice across Asia, maize across Mesoamerica. It was eaten as coarse bread, flatbread, or more often as porridge and gruel, which required less fuel and equipment than baking.</p>
+          <p>Bread quality was itself a status marker: finely sieved white bread for the wealthy, coarse whole-grain loaves — closer to what's now marketed as more nutritious — for laborers and the poor, a near-total reversal of how the two are perceived today.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="band">
+    <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=1800&auto=format&fit=crop" alt="Dried legumes, olives and grains in ceramic bowls">
+  </div>
+
+  <section id="staples">
+    <div class="wrap">
+      <div class="prose" style="max-width:720px;">
+        <div class="kicker">What filled in around the grain</div>
+        <h2 class="wide">The everyday staples beyond bread</h2>
+      </div>
+      <div class="staple-grid">
+        <div class="staple-cell">
+          <div class="num">01</div>
+          <h3>Legumes</h3>
+          <p>Lentils, chickpeas, and beans provided protein cheaply and stored well dried — a dietary mainstay across Egypt, Mesopotamia, Greece, and Rome alike.</p>
+        </div>
+        <div class="staple-cell">
+          <div class="num">02</div>
+          <h3>Olive oil &amp; fat</h3>
+          <p>Across the Mediterranean, olive oil served as the primary cooking fat, lamp fuel, and trade good all at once — pressed, stored, and rationed carefully.</p>
+        </div>
+        <div class="staple-cell">
+          <div class="num">03</div>
+          <h3>Fermented drinks</h3>
+          <p>Beer in Egypt and Mesopotamia, wine around the Mediterranean — often safer to drink than untreated water and a meaningful calorie source in their own right.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap">
+      <div class="split reverse">
+        <div class="figure">
+          <img src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?q=80&w=1400&auto=format&fit=crop" alt="A simmering pot of ancient style stew with vegetables">
+        </div>
+        <div>
+          <div class="kicker">Not the daily default</div>
+          <h2>Meat was the exception, not the rule</h2>
+          <p>Contrary to the image of ancient feasting popularized by film and television, meat was expensive to raise and mostly reserved for religious sacrifice, festivals, or the households of the wealthy. For most people, animal protein came in small amounts — a bit of cheese, egg, or fish — rather than regular servings of meat.</p>
+          <p>When meat was eaten, little was wasted: organs, blood, and bone went into sausages, broths, and preserved products, a practice closer to modern "nose to tail" cooking than to routine steak dinners.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="rule"></div>
+
+  <section id="civilizations">
+    <div class="wrap">
+      <div class="prose" style="max-width:720px;">
+        <div class="kicker">A world tour</div>
+        <h2 class="wide">How different civilizations ate</h2>
+      </div>
+
+      <div class="civ-row">
+        <div><h3>Ancient Egypt</h3><div class="tag">c. 3100–30 BCE</div></div>
+        <p>Bread and beer formed the caloric core of daily life, supplemented with onions, garlic, leeks, and Nile fish. Beer was thick, nutritious, and safer than river water, drunk by nearly everyone including children.</p>
+      </div>
+      <div class="civ-row">
+        <div><h3>Ancient Greece</h3><div class="tag">c. 800–146 BCE</div></div>
+        <p>Barley porridge (maza) rather than wheat bread was the everyday staple, eaten alongside olives, cheese, figs, and diluted wine — meat mainly at sacrificial festivals.</p>
+      </div>
+      <div class="civ-row">
+        <div><h3>Ancient Rome</h3><div class="tag">c. 753 BCE–476 CE</div></div>
+        <p>A grain porridge called puls was the original Roman staple food before bread became widespread; garum, a fermented fish sauce, was used almost universally as a savory seasoning, playing a role similar to salt today.</p>
+      </div>
+      <div class="civ-row">
+        <div><h3>Mesopotamia</h3><div class="tag">c. 3500–539 BCE</div></div>
+        <p>Barley bread and beer, dates, onions, and a wide variety of stews are recorded on some of the earliest known written recipes, inscribed on clay tablets over 3,700 years ago.</p>
+      </div>
+      <div class="civ-row">
+        <div><h3>Ancient China</h3><div class="tag">Shang–Han dynasties</div></div>
+        <p>Millet dominated the north and rice the south, eaten with fermented soybean products, vegetables, and — among those who could afford it — pork and fish, seasoned early on with soy-based sauces.</p>
+      </div>
+      <div class="civ-row">
+        <div><h3>Ancient Mesoamerica</h3><div class="tag">Olmec–Aztec era</div></div>
+        <p>Maize, beans, and squash — grown together and known as the "Three Sisters" — formed a nutritionally complementary staple trio, supplemented with chili, tomato, and cacao, the last reserved largely for elites and ritual use.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="band">
+    <img src="https://images.unsplash.com/photo-1571167530149-c72f2b6b6f6c?q=80&w=1800&auto=format&fit=crop" alt="Dried herbs, spices and preserved food in ancient style vessels">
+  </div>
+
+  <section id="preserving">
+    <div class="wrap">
+      <div class="prose" style="max-width:720px;margin-bottom:12px;">
+        <div class="kicker">Making food last</div>
+        <h2 class="wide">Preservation was survival, not a technique to master for taste</h2>
+        <p class="lede">Without refrigeration, keeping a harvest edible through winter or a long voyage required real technical skill, developed independently across nearly every ancient culture.</p>
+      </div>
+
+      <div class="pres-block">
+        <div class="figure" style="aspect-ratio:4/5;overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?q=80&w=1200&auto=format&fit=crop" alt="Salted and dried preserved fish and meat">
+        </div>
+        <div class="pres-list">
+          <div class="item">
+            <h4>Salting &amp; drying</h4>
+            <p>Meat and fish packed in salt or air-dried in the sun removed the moisture bacteria need to grow — the basis of Roman salted fish products and Egyptian dried fish trade.</p>
+          </div>
+          <div class="item">
+            <h4>Fermentation</h4>
+            <p>Beyond bread and beer, vegetables and fish were fermented into long-lasting, flavor-concentrated products — garum in Rome, a distant ancestor of practices still used in pickling and fish sauce today.</p>
+          </div>
+          <div class="item">
+            <h4>Honey &amp; sugar preservation</h4>
+            <p>Fruit preserved in honey — the only concentrated sweetener widely available before sugar cane spread from Asia — kept for months and appears in Roman, Greek, and Egyptian sources alike.</p>
+          </div>
+          <div class="item">
+            <h4>Smoking &amp; storage pits</h4>
+            <p>Grain stored in sealed, sometimes underground pits protected against pests and moisture; smoke added both preservation and flavor to meat and fish over longer periods.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="rule"></div>
+
+  <section id="myths">
+    <div class="wrap">
+      <div class="prose" style="max-width:720px;margin-bottom:8px;">
+        <div class="kicker">Set the record straight</div>
+        <h2 class="wide">A few assumptions about ancient food, checked</h2>
+      </div>
+
+      <div class="myth">
+        <div class="claim">"Ancient feasts were the everyday norm"</div>
+        <div class="fact">Elaborate multi-course banquets, like those depicted for Roman elites, were rare and reserved for the wealthy on specific occasions — most people's daily meals were simple, grain-based, and repetitive by comparison.</div>
+      </div>
+      <div class="myth">
+        <div class="claim">"Spices were used the way they are today"</div>
+        <div class="fact">Imported spices like pepper, cinnamon, and cloves traveled enormous distances at high cost, making them luxury goods used sparingly, often as much to display wealth as to flavor food.</div>
+      </div>
+      <div class="myth">
+        <div class="claim">"Everyone ate meat regularly"</div>
+        <div class="fact">For most of the ancient world's population, meat was occasional rather than routine — grains, legumes, and vegetables made up the bulk of what people actually ate day to day.</div>
+      </div>
+      <div class="myth">
+        <div class="claim">"Ancient food was bland without modern seasoning"</div>
+        <div class="fact">Fermented sauces, vinegar, honey, and regionally available herbs gave ancient dishes real depth of flavor — garum alone was produced and traded on an industrial scale across the Roman world.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap">
+      <div class="split">
+        <div class="figure">
+          <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=1400&auto=format&fit=crop" alt="A rustic communal meal with bread, olives and simple dishes">
+        </div>
+        <div>
+          <div class="kicker">What carried forward</div>
+          <h2>The habits that outlasted the civilizations</h2>
+          <p>Grain as the base of a meal, fermentation as flavor and preservation, and shared food as a social occasion are threads that run continuously from the ancient world into food cultures still practiced today. What's changed most isn't the underlying logic of eating — it's simply what's now available, and to whom, without the scarcity that once made a spice or a cut of meat worth more than gold.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2>Most ancient meals were simple — the story behind them rarely was.</h2>
+    <p>General background drawn from archaeobotanical research and surviving ancient texts including Apicius's De Re Coquinaria and Mesopotamian recipe tablets. Interpretations continue to be revised as new evidence emerges — this page is a starting overview, not a settled record.</p>
+    <div class="fine">What the Ancients Ate — an informational guide.</div>
+  </div>
+</footer>
+
+</body>
+</html>
